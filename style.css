@@ -1,0 +1,818 @@
+/* ============================================ */
+/* 1. GLOBAL & ROOT VARIABLES
+/* ============================================ */
+:root {
+    --primary-blue: #0a3d6f; /* Deep blue from logo */
+    --primary-gold: #daa520; /* Rich gold from logo */
+    --dark-grey: #333;
+    --light-grey: #f4f4f4;
+    --white: #ffffff;
+    --shadow: 0 4px 10px rgba(0,0,0,0.1);
+    
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Roboto', sans-serif;
+}
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--dark-grey);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Section Padding */
+section {
+    padding: 60px 0;
+}
+section:nth-child(even) {
+    background-color: var(--light-grey);
+}
+
+/* Section Title */
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    color: var(--primary-blue);
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: var(--primary-gold);
+    margin: 10px auto 0;
+}
+
+/* Button Styling */
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--primary-gold);
+    color: var(--white);
+    box-shadow: 0 2px 5px rgba(218, 165, 32, 0.4);
+}
+
+.btn-primary:hover {
+    background-color: #c5931a; /* Darker gold */
+    transform: translateY(-3px); /* Highlighted "arrow" effect */
+    box-shadow: 0 4px 8px rgba(218, 165, 32, 0.5);
+}
+
+
+/* ============================================ */
+/* 2. HEADER & NAVIGATION
+/* ============================================ */
+.header {
+    background-color: var(--white);
+    box-shadow: var(--shadow);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo-img {
+    width: 60px; /* Square size */
+    height: 60px;
+    margin-right: 15px;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-name {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    line-height: 1;
+}
+
+.logo-tagline {
+    font-size: 0.8rem;
+    color: var(--dark-grey);
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--primary-blue);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.95rem;
+    position: relative;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+/* Highlight "arrow" effect */
+.nav-link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-gold);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--primary-gold);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* ============================================ */
+/* 3. HERO SECTION & SLIDER
+/* ============================================ */
+.hero {
+    height: 80vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.slider {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    /* 5 slides = 500% */
+    width: 500%; 
+    animation: slide 25s infinite linear; /* 5s per slide */
+}
+
+.slide {
+    width: 20%; /* 100 / 5 slides */
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Auto right-to-left slide animation */
+@keyframes slide {
+    0% { transform: translateX(0); }
+    16% { transform: translateX(0); } /* Hold slide 1 */
+    20% { transform: translateX(-20%); } /* Move to slide 2 */
+    36% { transform: translateX(-20%); } /* Hold slide 2 */
+    40% { transform: translateX(-40%); } /* Move to slide 3 */
+    56% { transform: translateX(-40%); } /* Hold slide 3 */
+    60% { transform: translateX(-60%); } /* Move to slide 4 */
+    76% { transform: translateX(-60%); } /* Hold slide 4 */
+    80% { transform: translateX(-80%); } /* Move to slide 5 */
+    96% { transform: translateX(-80%); } /* Hold slide 5 */
+    100% { transform: translateX(0); } /* Loop back */
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 61, 111, 0.6); /* Blue overlay */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-content {
+    color: var(--white);
+    max-width: 700px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-content h1 {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.hero-content p {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+}
+
+/* ============================================ */
+/* 4. WELCOME SECTION
+/* ============================================ */
+.welcome-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.welcome-content h2 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--primary-blue);
+    margin-bottom: 15px;
+}
+
+.welcome-content p {
+    margin-bottom: 15px;
+}
+
+.welcome-info-boxes {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-box {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    border-left: 5px solid var(--primary-gold);
+}
+
+.info-box h3 {
+    font-family: var(--font-heading);
+    color: var(--primary-blue);
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.info-box p {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* ============================================ */
+/* 5. PRODUCTS SECTION (NEW with 3 Carousels)
+/* ============================================ */
+
+.products-grid {
+    display: grid;
+    /* Create 3 columns on desktop */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.service-div {
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column; 
+    transition: all 0.3s ease;
+}
+
+.service-div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* ---------------------------------
+   PRODUCT CAROUSEL STYLING
+--------------------------------- */
+.product-img {
+    height: 260px; /* Fixed height for the image area */
+    overflow: hidden;
+}
+
+.product-carousel {
+    width: 100%;
+    height: 100%;
+    /* Use CSS variables defined inline in HTML for dynamic sizing */
+}
+
+.track {
+    display: flex;
+    height: 100%;
+    /* Set width based on the number of slides in HTML (e.g., 3 slides = 300%) */
+    width: calc(var(--total-slides) * 100%); 
+    
+    /* Animation definition uses the time defined in the HTML element */
+    animation: slide-motion var(--animation-time) infinite;
+}
+
+.track img {
+    /* Each image takes up 1 / total-slides width */
+    width: calc(100% / var(--total-slides)); 
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ---------------------------------
+   GENERIC SLIDE ANIMATION KEYFRAMES
+   This is the core logic. It uses calc() to work for any number of slides.
+--------------------------------- */
+@keyframes slide-motion {
+    /* Slide 1: 0% to (100% / total_slides - transition_margin) */
+    0% { transform: translateX(0); }
+    31% { transform: translateX(0); } /* Hold slide 1 */
+
+    /* Slide 2: from (100% / total_slides) to (200% / total_slides - transition_margin) */
+    33% { transform: translateX(calc(-100% / var(--total-slides))); } /* Slide to 2 */
+    64% { transform: translateX(calc(-100% / var(--total-slides))); } /* Hold slide 2 */
+    
+    /* Slide 3 (only if exists): from (200% / total_slides) to 96% */
+    66% { transform: translateX(calc(-200% / var(--total-slides))); } /* Slide to 3 */
+    96% { transform: translateX(calc(-200% / var(--total-slides))); } /* Hold slide 3 */
+
+    100% { transform: translateX(0); } /* Loop back to slide 1 */
+}
+
+/* ---------------------------------
+   DESCRIPTION BOX STYLING (remains clean)
+--------------------------------- */
+.product-desc { /* Renamed from spices-desc to be generic */
+    padding: 25px;
+    flex-grow: 1; 
+}
+
+.ser-icon {
+    margin-bottom: 15px;
+}
+
+.ser-icon img {
+    width: 40px;
+    height: 40px;
+}
+
+.product-desc h2 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--primary-blue);
+    margin-bottom: 10px;
+}
+
+.product-desc p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 992px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================ */
+/* 6. QUOTATION FORM
+/* ============================================ */
+.quotation-form {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Grid span utilities */
+.span-half {
+    grid-column: span 1;
+}
+.span-full {
+    grid-column: span 2;
+}
+
+.form-group label {
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="url"],
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+}
+
+/* Style for contact # + country code */
+.form-group-contact .contact-inputs {
+    display: flex;
+}
+.form-group-contact select {
+    width: 100px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: none;
+}
+.form-group-contact input {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+/* Terms and Conditions Checkbox */
+.form-terms {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+.form-terms input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+.form-terms label {
+    margin-bottom: 0;
+    font-weight: 400;
+}
+.form-terms a {
+    color: var(--primary-blue);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Form Button */
+.form-button {
+    text-align: left;
+}
+.form-button .btn {
+    font-size: 1.1rem;
+    padding: 14px 35px;
+}
+
+/* Readonly fields */
+input:read-only {
+    background-color: #eee;
+    cursor: not-allowed;
+}
+
+/* ============================================ */
+/* 7. ABOUT US SECTION
+/* ============================================ */
+.about-content {
+    max-width: 800px;
+    margin: 0 auto 40px auto;
+    text-align: center;
+}
+
+.about-content h3 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--primary-blue);
+    margin-bottom: 15px;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.about-card {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.about-card h4 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--primary-gold);
+    margin-bottom: 15px;
+}
+
+.clients-say {
+    text-align: center;
+    margin-bottom: 40px;
+}
+.clients-say h3 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--primary-blue);
+    margin-bottom: 10px;
+}
+.clients-say p {
+    font-style: italic;
+    color: #777;
+}
+
+/* Partners & Certifications */
+.partners-section {
+    text-align: center;
+}
+.partners-section h3 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--primary-blue);
+    margin-bottom: 10px;
+}
+.partners-section p {
+    margin-bottom: 30px;
+}
+
+.scrolling-partners {
+    width: 100%;
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
+}
+
+.partners-track {
+    display: flex;
+    width: calc(200px * 8); /* 200px per logo * 8 logos (4 original + 4 copies) */
+    animation: scroll 20s linear infinite;
+}
+
+.partners-track img {
+    width: 200px;
+    height: 100px;
+    object-fit: contain;
+    padding: 0 40px;
+    filter: grayscale(100%);
+    opacity: 0.7;
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-200px * 4)); } /* Scroll by length of 4 logos */
+}
+
+
+/* ============================================ */
+/* 8. CONTACT SECTION
+/* ============================================ */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.contact-item {
+    background-color: var(--white);
+    padding: 30px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.contact-item i {
+    font-size: 2.5rem;
+    color: var(--primary-gold);
+    margin-bottom: 15px;
+}
+
+.contact-item h4 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    color: var(--primary-blue);
+    margin-bottom: 10px;
+}
+
+.contact-item p,
+.contact-item a {
+    font-size: 1rem;
+    color: var(--dark-grey);
+    text-decoration: none;
+}
+
+.contact-item a:hover {
+    color: var(--primary-gold);
+    text-decoration: underline;
+}
+
+/* ============================================ */
+/* 9. FOOTER
+/* ============================================ */
+.footer {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    padding: 30px 0;
+    font-size: 0.9rem;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-copyright {
+    opacity: 0.8;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 15px;
+}
+
+.social-link {
+    color: var(--white);
+    font-size: 1.2rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--white);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    background-color: var(--primary-gold);
+    border-color: var(--primary-gold);
+    transform: translateY(-3px); /* Highlight effect */
+}
+
+/* ============================================ */
+/* 10. MODAL (TERMS & CONDITIONS)
+/* ============================================ */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+    animation: fadeIn 0.3s;
+}
+
+.modal-content {
+    background-color: var(--white);
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 800px;
+    width: 90%;
+    position: relative;
+    animation: slideDown 0.4s;
+}
+
+.modal-close {
+    color: #aaa;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-close:hover {
+    color: var(--dark-grey);
+}
+
+.modal-content h2 {
+    font-family: var(--font-heading);
+    color: var(--primary-blue);
+    margin-bottom: 20px;
+}
+
+.modal-content h3 {
+    font-family: var(--font-heading);
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.modal-content p {
+    margin-bottom: 10px;
+}
+
+@keyframes slideDown {
+    from { top: -100px; opacity: 0; }
+    to { top: 0; opacity: 1; }
+}
+
+
+/* ============================================ */
+/* 11. RESPONSIVENESS (Mobile)
+/* ============================================ */
+@media (max-width: 992px) {
+    .header-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .nav-list {
+        gap: 15px;
+    }
+    
+    .welcome-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .quotation-form {
+        grid-template-columns: 1fr;
+    }
+    
+    .span-half, .span-full {
+        grid-column: span 1;
+    }
+    
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    /* Mobile Menu would go here - for simplicity, 
+       this design shrinks the nav */
+    .nav-link {
+        font-size: 0.8rem;
+    }
+    .nav-list {
+        gap: 10px;
+    }
+    
+    .logo-img {
+        width: 50px;
+        height: 50px;
+    }
+    .logo-name {
+        font-size: 1.2rem;
+    }
+}
