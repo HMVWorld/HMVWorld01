@@ -120,8 +120,8 @@ document.addEventListener("DOMContentLoaded", function() {
     try {
       // Replace YOUR IDs with actual EmailJS IDs
       const response = await emailjs.send(
-        'YOUR_SERVICE_ID',
-        'YOUR_TEMPLATE_ID',
+        'HMVWORLD_service',
+        'Contactus',
         {
           to_email: 'HMVworld@outlook.com',
           from_name: `${data.first_name} ${data.last_name}`,
@@ -129,6 +129,7 @@ document.addEventListener("DOMContentLoaded", function() {
           company_name: data.company_name || 'N/A',
           contact: `${data.country_code} ${data.contact_number}`,
           email: data.email,
+          website:data.website,
           product: data.product_req,
           product_type: data.product_type || 'N/A',
           requirements: data.exact_req || 'N/A',
@@ -161,3 +162,6 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
 });
+
+
+
