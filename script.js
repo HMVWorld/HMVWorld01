@@ -92,7 +92,43 @@ document.addEventListener("DOMContentLoaded", function() {
   window.onclick = (event) => {
     if (event.target == modal) modal.style.display = "none";
   };
+//==========================
+//=====================
+<script>
+  const cursorOuter = document.querySelector(".cursor-outer");
+  const cursorInner = document.querySelector(".cursor-inner");
 
+  // Track mouse movement
+  document.addEventListener("mousemove", (e) => {
+    // Determine the position
+    const x = e.clientX;
+    const y = e.clientY;
+
+    // Apply the transform (updates inline styles)
+    // We center the outer ring by subtracting half its size (approx 15px if width is 30px)
+    cursorOuter.style.transform = `translate(${x - 15}px, ${y - 15}px)`;
+    cursorInner.style.transform = `translate(${x - 3}px, ${y - 3}px)`;
+
+    // Make visible
+    cursorOuter.style.visibility = "visible";
+    cursorInner.style.visibility = "visible";
+  });
+
+  // Optional: Add hover effect for links
+  const links = document.querySelectorAll("a, button, .cursor-pointer");
+  
+  links.forEach(link => {
+    link.addEventListener("mouseenter", () => {
+      cursorOuter.classList.add("cursor-hover");
+      cursorInner.classList.add("cursor-hover");
+    });
+    link.addEventListener("mouseleave", () => {
+      cursorOuter.classList.remove("cursor-hover");
+      cursorInner.classList.remove("cursor-hover");
+    });
+  });
+</script>
+  
 
   // ==============================
   // 3. QUOTATION FORM SUBMISSION
@@ -162,6 +198,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
 });
+
 
 
 
