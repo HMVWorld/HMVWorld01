@@ -92,42 +92,57 @@ document.addEventListener("DOMContentLoaded", function() {
   window.onclick = (event) => {
     if (event.target == modal) modal.style.display = "none";
   };
-//==========================
-//=====================
-
+// ==============================
+  // 3. CUSTOM MOUSE CURSOR
+  // ==============================
   const cursorOuter = document.querySelector(".cursor-outer");
   const cursorInner = document.querySelector(".cursor-inner");
 
-  // Track mouse movement
-  document.addEventListener("mousemove", (e) => {
-    // Determine the position
-    const x = e.clientX;
-    const y = e.clientY;
+  // SAFETY CHECK: Only run if cursor elements exist in HTML
+  if (cursorOuter && cursorInner) {
+    let mouseX = 0;
+    let mouseY = 0;
+    let isMoving = false;
 
-    // Apply the transform (updates inline styles)
-    // We center the outer ring by subtracting half its size (approx 15px if width is 30px)
-    cursorOuter.style.transform = `translate(${x - 15}px, ${y - 15}px)`;
-    cursorInner.style.transform = `translate(${x - 3}px, ${y - 3}px)`;
-
-    // Make visible
-    cursorOuter.style.visibility = "visible";
-    cursorInner.style.visibility = "visible";
-  });
-
-  // Optional: Add hover effect for links
-  const links = document.querySelectorAll("a, button, .cursor-pointer");
-  
-  links.forEach(link => {
-    link.addEventListener("mouseenter", () => {
-      cursorOuter.classList.add("cursor-hover");
-      cursorInner.classList.add("cursor-hover");
+    // Track mouse position
+    document.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      
+      // Make visible immediately on first move
+      if (!isMoving) {
+        cursorOuter.style.visibility = "visible";
+        cursorInner.style.visibility = "visible";
+        isMoving = true;
+      }
     });
-    link.addEventListener("mouseleave", () => {
-      cursorOuter.classList.remove("cursor-hover");
-      cursorInner.classList.remove("cursor-hover");
+
+    // Use requestAnimationFrame for smooth animation without lag
+    function animateCursor() {
+      // Outer ring (centered)
+      cursorOuter.style.transform = `translate(${mouseX - 15}px, ${mouseY - 15}px)`;
+      // Inner dot (centered)
+      cursorInner.style.transform = `translate(${mouseX - 3}px, ${mouseY - 3}px)`;
+      
+      requestAnimationFrame(animateCursor);
+    }
+    
+    // Start animation loop
+    requestAnimationFrame(animateCursor);
+
+    // Hover effects
+    const links = document.querySelectorAll("a, button, .cursor-pointer, input, select, textarea");
+    links.forEach(link => {
+      link.addEventListener("mouseenter", () => {
+        cursorOuter.classList.add("cursor-hover");
+        cursorInner.classList.add("cursor-hover");
+      });
+      link.addEventListener("mouseleave", () => {
+        cursorOuter.classList.remove("cursor-hover");
+        cursorInner.classList.remove("cursor-hover");
+      });
     });
-  });
-  
+  }
 
   // ==============================
   // 3. QUOTATION FORM SUBMISSION
@@ -197,6 +212,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
 });
+
 
 
 
