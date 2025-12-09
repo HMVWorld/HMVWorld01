@@ -934,3 +934,56 @@ input:read-only {
         font-size: 1.2rem;
     }
 }
+
+/* ============================================ */
+/* 13. Base styles for both cursor parts
+/* ============================================ */
+/* Base styles for both cursor parts */
+.mouseCursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 30px; /* Size of outer ring */
+  height: 30px;
+  border-radius: 50%;
+  pointer-events: none; /* Allows you to click through the cursor */
+  z-index: 9999; /* Keeps it on top of everything */
+  visibility: hidden; /* Hidden until mouse moves */
+  transition: opacity 0.3s ease;
+}
+
+/* The Outer Ring */
+.cursor-outer {
+  border: 1px solid #000; /* Change color here */
+  /* Easing for the "lag" effect */
+  transition: transform 0.15s ease-out, visibility 0.1s; 
+}
+
+/* The Inner Dot */
+.cursor-inner {
+  width: 6px;
+  height: 6px;
+  background-color: #000; /* Change color here */
+  /* Center the inner dot relative to the outer ring's coordinate system if needed, 
+     but usually JS handles the exact centering. 
+     We make it smaller and remove the transition for instant movement. */
+  transition: transform 0s, visibility 0.1s; 
+  /* Offset to center it perfectly if JS coordinates are identical */
+  margin-top: 12px; 
+  margin-left: 12px;
+}
+
+/* Optional: Hide the default cursor */
+body {
+  cursor: none;
+}
+
+/* Optional: Hover effect (add class .cursor-hover via JS) */
+.cursor-outer.cursor-hover {
+  opacity: 0.5;
+  transform: scale(1.5);
+}
+.cursor-inner.cursor-hover {
+  opacity: 0;
+}
+
