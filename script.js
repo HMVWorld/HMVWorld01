@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function() {
   };
 //==========================
 //=====================
-<script>
+
   const cursorOuter = document.querySelector(".cursor-outer");
   const cursorInner = document.querySelector(".cursor-inner");
 
@@ -127,7 +127,6 @@ document.addEventListener("DOMContentLoaded", function() {
       cursorInner.classList.remove("cursor-hover");
     });
   });
-</script>
   
 
   // ==============================
@@ -198,6 +197,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
 });
+
 
 
 
